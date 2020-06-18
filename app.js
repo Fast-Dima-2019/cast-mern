@@ -1,15 +1,16 @@
 const express = require('express')
-// const config = require('config')
+const config = require('config')
 // const path = require('path')
 const db = require('./database/db')
 
-const PORT = process.env.PORT || 5000
+const PORT = config.get(`port`) || 5000
+// const PORT = process.env.PORT || 5000
 
 // Чтобы иметь возможность заполнить req.body
 const app = express()
 app.use(express.json({extended: true}))
 
-// app.use('/api/auth', require('./routes/auth.routers'))
+app.use('/api/auth', require('./routes/auth.routers'))
 // app.use('/api/link', require('./routes/link.routes'))
 // app.use('/t', require('./routes/redirect.routes'))
 
@@ -19,7 +20,6 @@ app.use(express.json({extended: true}))
 //     res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'))
 //   })
 // }
-// const PORT = config.get(`port`) || 5000
 
 app.use((req, res) => {
   const err = new Error(`(${req.method}) URL not found -> ` + req.url)
@@ -29,7 +29,7 @@ app.use((req, res) => {
 
 async function start() {
   try {
-    await db.sync({force: false})
+    await db.sync({force: true})
         // db.authenticate()
         .then(() => console.log('Подключение DB -> УСПЕШНО'))
         .catch(err => console.log('ошибка подключения', err))
