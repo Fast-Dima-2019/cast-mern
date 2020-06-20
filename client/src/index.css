@@ -1,0 +1,21 @@
+/*Подключаем унифицированную версию materialize*/
+@import "~materialize-css/dist/css/materialize.min.css";
+
+input.yellow-input {
+  border-bottom: azure 1px solid !important;
+  box-shadow: azure 0 1px 0 0 !important;
+}
+
+input.yellow-input:focus {
+  border-bottom: yellow 1px solid !important;
+  box-shadow: yellow 0 1px 0 0 !important;
+}
+
+input.yellow-input + label {
+  color: azure !important;
+}
+
+input.yellow-input + label:focus {
+  color: yellow !important;
+}
+
