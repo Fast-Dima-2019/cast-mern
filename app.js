@@ -29,7 +29,7 @@ app.use((req, res) => {
 
 async function start() {
   try {
-    await db.sync({force: true})
+    await db.sync({force: false})
         // db.authenticate()
         .then(() => console.log('Подключение DB -> УСПЕШНО'))
         .catch(err => console.log('ошибка подключения', err))
