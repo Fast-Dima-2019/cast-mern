@@ -11,20 +11,22 @@ const router = Router()
 router.post('/register',
     [
       check('email', `Некорректный email`).isEmail(),
-      check('password', `Min 5 символов`).isLength({min: 5}),
+      check('password', `пароль >= 5 символов`).isLength({min: 5}),
     ],
     async (req, res) => {
       try {
+
         const errValid = await validationResult(req)
         if (!errValid.isEmpty()) {
-          return res.status(403).json({err: errValid.array(), msg: 'bed data - регистрация'})
+          // console.log(errValid.errors[0].msg)
+          return res.status(403).json({msg: 'регистрация -> ' + errValid.errors[0].msg})
         }
 
         const {name, email, password, role} = req.body
         // Search user
         const data = await User.findOne({where: {email: email}})
         if (data) {
-          return res.status(403).send('User already exists')
+          return res.status(403).json({msg: 'User already exists'})
         }
 
         const hashPwd = await bcrypt.hash(password, 12)
