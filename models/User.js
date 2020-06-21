@@ -3,13 +3,13 @@ const sequelize = require('../database/db')
 
 class User extends Model {
 }
- 
+
 User.init({
       name: {
         type: DataTypes.STRING, allowNull: false,
         validate: {
-          isAlpha: {msg: 'Name -> только латинские буквы'},
-          len: {args: [3, 254], msg: 'Name -> только 3-254 символа'}
+          // isAlpha: {msg: 'Name -> только латинские буквы'},
+          len: {args: [3, 254], msg: 'Name -> от 3 до 253 символов'}
         }
       },
       email: {
@@ -21,6 +21,10 @@ User.init({
       role: {
         type: DataTypes.INTEGER, defaultValue: 0,
       },
+      created: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
     {sequelize, modelName: 'user'}
 )
