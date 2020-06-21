@@ -55,10 +55,11 @@ export const AuthPage = (props) => {
             <div>
               <div className="input-field">
                 <input
-                    placeholder="Ввведите name"
+                    placeholder="Введите name"
                     id="name" name="name"
                     type="text"
                     className="yellow-input"
+                    value={form.name}
                     onChange={changeHandler}
                 />
                 <label htmlFor="name">Name</label>
@@ -66,10 +67,11 @@ export const AuthPage = (props) => {
 
               <div className="input-field">
                 <input
-                    placeholder="Ввведите email"
+                    placeholder="Введите email"
                     id="email" name="email"
                     type="text"
                     className="yellow-input"
+                    value={form.email}
                     onChange={changeHandler}
                 />
                 <label htmlFor="email">Email</label>
@@ -77,10 +79,11 @@ export const AuthPage = (props) => {
 
               <div className="input-field">
                 <input
-                    placeholder="Ввведите пароль"
+                    placeholder="Введите пароль"
                     id="password" name="password"
                     type="password"
                     className="yellow-input"
+                    value={form.password}
                     onChange={changeHandler}
                 />
                 <label htmlFor="password">Password</label>
