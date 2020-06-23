@@ -1,6 +1,6 @@
 const express = require('express')
 const config = require('config')
-// const path = require('path')
+const path = require('path')
 const db = require('./database/db')
 require('./database/asociations')
 
@@ -16,12 +16,12 @@ app.use('/api/auth', require('./routes/auth.routers'))
 app.use('/api/device', require('./routes/device.routers'))
 // app.use('/t', require('./routes/redirect.routes'))
 
-// if (process.env.NODE_ENV === 'production'){
-//   app.use('/', express.static(path.join(__dirname, 'clients', 'build')))
-//   app.get('*',(req,res)=>{
-//     res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'))
-//   })
-// }
+if (process.env.NODE_ENV === 'production'){
+  app.use('/', express.static(path.join(__dirname, 'clients', 'build')))
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'))
+  })
+}
 
 app.use((req, res) => {
   const err = new Error(`(${req.method}) URL not found -> ` + req.url)
