@@ -19,3 +19,7 @@ input.yellow-input + label:focus {
   color: yellow !important;
 }
 
+textarea {
+  display: block;
+  height: 100%;
+}

@@ -45,7 +45,10 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const devices = await Device.findByPk(req.params.id)
+    const devices = await Device.findByPk(
+        req.params.id,
+        {include: {model: User, attributes: ['name', 'email']}}
+        )
     res.json(devices)
   } catch (err) {
     res.status(500).join({msg: 'что-то пошло не так', err: err.message})
