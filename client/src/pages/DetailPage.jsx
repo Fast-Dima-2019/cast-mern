@@ -24,6 +24,7 @@ export const DetailPage = (props) => {
   useEffect(() => {
     getDevice()
   }, [getDevice])
+
   if (loading) {
     return <Loader/>
   }
